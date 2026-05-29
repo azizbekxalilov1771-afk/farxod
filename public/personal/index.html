@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mening Shaxsiy Saytim</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles"></div>
+    
+    <!-- Floating Geometric Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
+        <div class="shape shape-7"></div>
+        <div class="shape shape-8"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <span class="logo-text">&lt;F/&gt;</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Bosh sahifa</a></li>
+            <li><a href="#about" class="nav-link">Men haqimda</a></li>
+            <li><a href="#skills" class="nav-link">Ko'nikmalar</a></li>
+            <li><a href="#social" class="nav-link">Ijtimoiy tarmoqlar</a></li>
+        </ul>
+        <div class="nav-hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home" class="mobile-link">Bosh sahifa</a></li>
+            <li><a href="#about" class="mobile-link">Men haqimda</a></li>
+            <li><a href="#skills" class="mobile-link">Ko'nikmalar</a></li>
+            <li><a href="#social" class="mobile-link">Ijtimoiy tarmoqlar</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge animate-fade-in">
+                <i class="fas fa-rocket"></i>
+                <span>Xush kelibsiz mening saytimga!</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="greeting animate-slide-up">Salom, men</span>
+                <span class="name animate-slide-up delay-1" id="typingName"></span>
+                <span class="cursor">|</span>
+            </h1>
+            <p class="hero-subtitle animate-slide-up delay-2">
+                <span class="highlight">Dasturchi</span> | 
+                <span class="highlight">Dizayner</span> | 
+                <span class="highlight">Ijodkor</span>
+            </p>
+            <p class="hero-description animate-fade-in delay-3">
+                Men texnologiya va ijodkorlik orasidagi ko'prikni qurishni yaxshi ko'raman. 
+                Har bir loyiha - bu yangi sarguzasht!
+            </p>
+            <div class="hero-buttons animate-fade-in delay-4">
+                <a href="#social" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Bog'lanish
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <i class="fas fa-user"></i>
+                    Men haqimda
+                </a>
+            </div>
+            <div class="scroll-indicator animate-bounce">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        <div class="hero-visual animate-float">
+            <div class="hero-circle">
+                <div class="circle-ring ring-1"></div>
+                <div class="circle-ring ring-2"></div>
+                <div class="circle-ring ring-3"></div>
+                <div class="avatar-placeholder">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-header">
+            <span class="section-tag animate-on-scroll">Kim ekanligimni bilmoqchimisiz?</span>
+            <h2 class="section-title animate-on-scroll">Men haqimda</h2>
+            <div class="section-line animate-on-scroll"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-card animate-on-scroll">
+                <div class="about-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Dasturlash</h3>
+                <p>Zamonaviy texnologiyalar yordamida ajoyib veb-saytlar va ilovalar yarataman</p>
+            </div>
+            <div class="about-card animate-on-scroll delay-1">
+                <div class="about-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Dizayn</h3>
+                <p>Chiroyli va foydalanuvchilarga qulay interfeyslar loyihalashni yoqtiraman</p>
+            </div>
+            <div class="about-card animate-on-scroll delay-2">
+                <div class="about-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Ijodkorlik</h3>
+                <p>Har bir loyihaga kreativ yondashuv va yangi g'oyalar olib kiraman</p>
+            </div>
+        </div>
+        <div class="about-text animate-on-scroll">
+            <p>
+                Men yosh va g'ayratli dasturchiman. Texnologiyalar dunyosida o'z o'rnimni topish uchun 
+                har kuni yangi narsalarni o'rganaman. Mening maqsadim - zamonaviy va foydali raqamli 
+                yechimlar yaratish orqali odamlarga yordam berish.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="section-header">
+            <span class="section-tag animate-on-scroll">Nimalarni bilaman?</span>
+            <h2 class="section-title animate-on-scroll">Ko'nikmalarim</h2>
+            <div class="section-line animate-on-scroll"></div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card animate-on-scroll" data-skill="90">
+                <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                <h4>HTML5</h4>
+                <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+            </div>
+            <div class="skill-card animate-on-scroll delay-1" data-skill="85">
+                <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                <h4>CSS3</h4>
+                <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+            </div>
+            <div class="skill-card animate-on-scroll delay-2" data-skill="80">
+                <div class="skill-icon"><i class="fab fa-js"></i></div>
+                <h4>JavaScript</h4>
+                <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+            </div>
+            <div class="skill-card animate-on-scroll delay-3" data-skill="75">
+                <div class="skill-icon"><i class="fab fa-python"></i></div>
+                <h4>Python</h4>
+                <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+            </div>
+            <div class="skill-card animate-on-scroll delay-4" data-skill="70">
+                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                <h4>React</h4>
+                <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+            </div>
+            <div class="skill-card animate-on-scroll delay-5" data-skill="85">
+                <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                <h4>Node.js</h4>
+                <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section id="social" class="social-section">
+        <div class="section-header">
+            <span class="section-tag animate-on-scroll">Meni kuzatib boring!</span>
+            <h2 class="section-title animate-on-scroll">Ijtimoiy Tarmoqlar</h2>
+            <div class="section-line animate-on-scroll"></div>
+        </div>
+        <div class="social-grid">
+            <a href="https://instagram.com/USERNAME" target="_blank" class="social-card instagram animate-on-scroll">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <h3>Instagram</h3>
+                <p>Kundalik hayotimdan lavhalar</p>
+                <span class="social-arrow"><i class="fas fa-arrow-right"></i></span>
+                <div class="social-glow"></div>
+            </a>
+            <a href="https://t.me/USERNAME" target="_blank" class="social-card telegram animate-on-scroll delay-1">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-telegram-plane"></i>
+                </div>
+                <h3>Telegram</h3>
+                <p>Foydali ma'lumotlar va yangiliklar</p>
+                <span class="social-arrow"><i class="fas fa-arrow-right"></i></span>
+                <div class="social-glow"></div>
+            </a>
+            <a href="https://youtube.com/@USERNAME" target="_blank" class="social-card youtube animate-on-scroll delay-2">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <h3>YouTube</h3>
+                <p>Video darsliklar va kontentlar</p>
+                <span class="social-arrow"><i class="fas fa-arrow-right"></i></span>
+                <div class="social-glow"></div>
+            </a>
+            <a href="https://github.com/USERNAME" target="_blank" class="social-card github animate-on-scroll delay-3">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-github"></i>
+                </div>
+                <h3>GitHub</h3>
+                <p>Ochiq kodli loyihalarim</p>
+                <span class="social-arrow"><i class="fas fa-arrow-right"></i></span>
+                <div class="social-glow"></div>
+            </a>
+            <a href="https://tiktok.com/@USERNAME" target="_blank" class="social-card tiktok animate-on-scroll delay-4">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <h3>TikTok</h3>
+                <p>Qisqa va qiziqarli videolar</p>
+                <span class="social-arrow"><i class="fas fa-arrow-right"></i></span>
+                <div class="social-glow"></div>
+            </a>
+            <a href="https://facebook.com/USERNAME" target="_blank" class="social-card facebook animate-on-scroll delay-5">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <h3>Facebook</h3>
+                <p>Do'stlar va hamjamiyat</p>
+                <span class="social-arrow"><i class="fas fa-arrow-right"></i></span>
+                <div class="social-glow"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">&lt;F/&gt;</div>
+            <p>Ijod qilish - bu hayotning go'zalligi</p>
+            <div class="footer-socials">
+                <a href="https://instagram.com/USERNAME" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/USERNAME" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://youtube.com/@USERNAME" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://github.com/USERNAME" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://tiktok.com/@USERNAME" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="footer-line"></div>
+            <p class="footer-copy">&copy; 2024 Barcha huquqlar himoyalangan</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
