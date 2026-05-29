@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biznes Xizmatlari - Universal Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/business.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bolt"></i>
+                <a href="/" style="color: inherit; text-decoration: none;">
+                    <span>Universal Platform</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Bosh sahifa</a>
+                <a href="/quiz.html" class="nav-link">Quiz Tizimi</a>
+                <a href="/portfolio.html" class="nav-link">Portfolio</a>
+                <a href="/business.html" class="nav-link active">Biznes</a>
+                <a href="/#shop" class="nav-link">Do'kon</a>
+            </div>
+            
+            <div class="nav-actions" id="nav-actions">
+                <button class="btn-secondary" onclick="showLogin()">Kirish</button>
+                <button class="btn-primary" onclick="showRegister()">Ro'yxatdan o'tish</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="business-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Professional Biznes Xizmatlari</h1>
+                    <p>Sizning g'oyalaringizni raqamli yechimlar orqali haqiqatga aylantiring</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Muvaffaqiyatli loyihalar</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Mijoz mamnuniyati</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Qo'llab-quvvatlash</div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn-primary btn-large" onclick="scrollToServices()">
+                            Xizmatlarni ko'rish
+                        </button>
+                        <button class="btn-outline btn-large" onclick="showContactModal()">
+                            Bog'lanish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Categories -->
+        <section class="service-categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Bizning Xizmatlarimiz</h2>
+                    <p>Har qanday texnologik ehtiyojingiz uchun professional yechimlar</p>
+                </div>
+                
+                <div class="category-grid" id="category-grid">
+                    <!-- Categories will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section class="services-section" id="services-section">
+            <div class="container">
+                <div class="services-header">
+                    <h2>Barcha Xizmatlar</h2>
+                    <div class="services-filters">
+                        <select id="category-filter" class="filter-select" onchange="filterServices()">
+                            <option value="">Barcha kategoriyalar</option>
+                        </select>
+                        <button class="btn-secondary" onclick="clearFilters()">
+                            <i class="fas fa-times"></i> Tozalash
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="services-grid" id="services-grid">
+                    <!-- Services will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="why-choose-us">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nima uchun bizni tanlashingiz kerak?</h2>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Tez va Sifatli</h3>
+                        <p>Loyihalaringizni belgilangan muddatda yuqori sifat bilan taqdim etamiz</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Tajribali Jamoa</h3>
+                        <p>Ko'p yillik tajribaga ega mutaxassislar jamoasi</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Qo'llab-quvvatlash</h3>
+                        <p>Loyiha tugagandan keyin ham doimiy qo'llab-quvvatlash</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Kafolat</h3>
+                        <p>Barcha xizmatlar uchun to'liq kafolat beramiz</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ish Jarayoni</h2>
+                    <p>Sizning loyihangiz qanday amalga oshiriladi</p>
+                </div>
+                
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Maslahat</h3>
+                            <p>Sizning ehtiyojlaringizni tahlil qilib, eng yaxshi yechimni taklif qilamiz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Rejalashtirish</h3>
+                            <p>Loyiha uchun batafsil reja va vaqt jadvalini tuzamiz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Ishlab chiqish</h3>
+                            <p>Zamonaviy texnologiyalar yordamida loyihangizni amalga oshiramiz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Testlash va Taqdim</h3>
+                            <p>Puxta testdan o'tkazib, tayyor loyihani taqdim etamiz</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel (for authenticated admins) -->
+        <section class="admin-panel" id="admin-panel" style="display: none;">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Xizmatlar Boshqaruvi</h2>
+                    <div class="admin-actions">
+                        <button class="btn-primary" onclick="showAddServiceModal()">
+                            <i class="fas fa-plus"></i> Xizmat qo'shish
+                        </button>
+                        <button class="btn-secondary" onclick="showOrdersModal()">
+                            <i class="fas fa-list"></i> Buyurtmalar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-stats" id="admin-stats">
+                    <!-- Stats will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Service Detail Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content service-modal">
+            <span class="close" onclick="closeServiceModal()">&times;</span>
+            <div class="service-detail" id="service-detail">
+                <!-- Service details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content order-modal">
+            <span class="close" onclick="closeOrderModal()">&times;</span>
+            <h2>Xizmat buyurtma qilish</h2>
+            <form id="order-form">
+                <div class="service-summary" id="order-service-summary">
+                    <!-- Service summary will be displayed here -->
+                </div>
+                
+                <div class="form-group">
+                    <label for="order-message">Qo'shimcha ma'lumot</label>
+                    <textarea id="order-message" name="message" rows="4" 
+                              placeholder="Loyiha haqida batafsil ma'lumot bering..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="order-phone">Telefon raqam</label>
+                    <input type="tel" id="order-phone" name="phone" placeholder="+998 90 123 45 67">
+                </div>
+                
+                <div class="form-group">
+                    <label for="order-timeline">Kutilayotgan muddat</label>
+                    <select id="order-timeline" name="timeline">
+                        <option value="1-week">1 hafta</option>
+                        <option value="2-weeks">2 hafta</option>
+                        <option value="1-month">1 oy</option>
+                        <option value="2-months">2 oy</option>
+                        <option value="custom">Boshqa</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeOrderModal()">
+                        Bekor qilish
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        Buyurtma berish
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Service Modal -->
+    <div id="addServiceModal" class="modal">
+        <div class="modal-content add-service-modal">
+            <span class="close" onclick="closeAddServiceModal()">&times;</span>
+            <h2 id="service-form-title">Xizmat qo'shish</h2>
+            <form id="service-form" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="service-name">Xizmat nomi</label>
+                        <input type="text" id="service-name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service-category">Kategoriya</label>
+                        <select id="service-category" name="category" required>
+                            <option value="web-development">Web Dasturlash</option>
+                            <option value="mobile-development">Mobil Ilovalar</option>
+                            <option value="design">Dizayn</option>
+                            <option value="marketing">Digital Marketing</option>
+                            <option value="consulting">Konsalting</option>
+                            <option value="other">Boshqa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service-price">Narx ($)</label>
+                        <input type="number" id="service-price" name="price" min="0" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service-active">Holat</label>
+                        <select id="service-active" name="is_active">
+                            <option value="1">Faol</option>
+                            <option value="0">Nofaol</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="service-description">Tavsif</label>
+                        <textarea id="service-description" name="description" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="service-features">Xususiyatlar</label>
+                        <input type="text" id="service-features" name="features" 
+                               placeholder="Responsive dizayn, SEO optimizatsiya, Admin panel">
+                        <small>Vergul bilan ajrating</small>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="service-image">Rasm</label>
+                        <input type="file" id="service-image" name="image" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeAddServiceModal()">
+                        Bekor qilish
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <span id="service-submit-text">Saqlash</span>
+                        <div class="spinner" id="service-form-spinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content contact-modal">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <h2>Bog'lanish</h2>
+            <form id="contact-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="contact-name">Ismingiz</label>
+                        <input type="text" id="contact-name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-phone">Telefon</label>
+                        <input type="tel" id="contact-phone" name="phone" placeholder="+998 90 123 45 67">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="contact-subject">Mavzu</label>
+                        <input type="text" id="contact-subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="contact-message">Xabar</label>
+                        <textarea id="contact-message" name="message" rows="5" required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeContactModal()">
+                        Bekor qilish
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        Xabar yuborish
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <p>Yuklanmoqda...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/main.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/business.js"></script>
+</body>
+</html>

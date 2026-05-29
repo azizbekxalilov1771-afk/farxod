@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Universal Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bolt"></i>
+                <a href="/" style="color: inherit; text-decoration: none;">
+                    <span>Universal Platform</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Bosh sahifa</a>
+                <a href="/quiz.html" class="nav-link">Quiz Tizimi</a>
+                <a href="/portfolio.html" class="nav-link active">Portfolio</a>
+                <a href="/#business" class="nav-link">Biznes</a>
+                <a href="/#shop" class="nav-link">Do'kon</a>
+            </div>
+            
+            <div class="nav-actions" id="nav-actions">
+                <button class="btn-secondary" onclick="showLogin()">Kirish</button>
+                <button class="btn-primary" onclick="showRegister()">Ro'yxatdan o'tish</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Portfolio Header -->
+        <section class="portfolio-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1>Mening Portfolio</h1>
+                    <p>Professional loyihalar va ishlanmalar to'plami</p>
+                </div>
+                
+                <!-- Search and Filter -->
+                <div class="portfolio-controls">
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Loyihalarni qidirish..." class="search-input">
+                        <button class="search-btn" onclick="searchPortfolio()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="filter-container">
+                        <select id="category-filter" class="filter-select" onchange="filterByCategory()">
+                            <option value="all">Barcha kategoriyalar</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Grid -->
+        <section class="portfolio-section">
+            <div class="container">
+                <!-- Categories -->
+                <div class="category-tabs" id="category-tabs">
+                    <button class="category-tab active" data-category="all" onclick="selectCategory('all', this)">
+                        Barchasi
+                    </button>
+                </div>
+
+                <!-- Portfolio Items -->
+                <div class="portfolio-grid" id="portfolio-grid">
+                    <!-- Portfolio items will be loaded here -->
+                </div>
+
+                <!-- Load More Button -->
+                <div class="load-more-container" id="load-more-container" style="display: none;">
+                    <button class="btn-outline" onclick="loadMoreItems()">
+                        <i class="fas fa-plus"></i>
+                        Ko'proq yuklash
+                    </button>
+                </div>
+
+                <!-- No Results -->
+                <div class="no-results" id="no-results" style="display: none;">
+                    <div class="no-results-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Hech narsa topilmadi</h3>
+                    <p>Qidiruv mezonlaringizni o'zgartiring yoki barcha loyihalarni ko'ring</p>
+                    <button class="btn-primary" onclick="clearFilters()">
+                        Filtrlarni tozalash
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel (for authenticated admins) -->
+        <section class="admin-panel" id="admin-panel" style="display: none;">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Portfolio Boshqaruvi</h2>
+                    <button class="btn-primary" onclick="showAddProjectModal()">
+                        <i class="fas fa-plus"></i>
+                        Loyiha qo'shish
+                    </button>
+                </div>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-projects">0</div>
+                        <div class="stat-label">Jami loyihalar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-categories">0</div>
+                        <div class="stat-label">Kategoriyalar</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content project-modal">
+            <span class="close" onclick="closeProjectModal()">&times;</span>
+            <div class="project-detail" id="project-detail">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Project Modal -->
+    <div id="addProjectModal" class="modal">
+        <div class="modal-content add-project-modal">
+            <span class="close" onclick="closeAddProjectModal()">&times;</span>
+            <h2 id="project-form-title">Loyiha qo'shish</h2>
+            <form id="project-form" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="project-title">Loyiha nomi</label>
+                        <input type="text" id="project-title" name="title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-category">Kategoriya</label>
+                        <select id="project-category" name="category" required>
+                            <option value="web">Web Saytlar</option>
+                            <option value="app">Mobil Ilovalar</option>
+                            <option value="design">Dizayn</option>
+                            <option value="other">Boshqa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="project-description">Tavsif</label>
+                        <textarea id="project-description" name="description" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-url">Loyiha havolasi</label>
+                        <input type="url" id="project-url" name="project_url" placeholder="https://...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-technologies">Texnologiyalar</label>
+                        <input type="text" id="project-technologies" name="technologies" 
+                               placeholder="React, Node.js, MongoDB">
+                        <small>Vergul bilan ajrating</small>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="project-image">Rasm</label>
+                        <input type="file" id="project-image" name="image" accept="image/*">
+                        <div class="image-preview" id="image-preview" style="display: none;">
+                            <img id="preview-img" src="" alt="Preview">
+                            <button type="button" class="remove-image" onclick="removeImage()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeAddProjectModal()">
+                        Bekor qilish
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <span id="submit-text">Saqlash</span>
+                        <div class="spinner" id="form-spinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <p>Yuklanmoqda...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/portfolio.js"></script>
+</body>
+</html>

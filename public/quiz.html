@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Tizimi - Universal Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bolt"></i>
+                <a href="/" style="color: inherit; text-decoration: none;">
+                    <span>Universal Platform</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Bosh sahifa</a>
+                <a href="/quiz.html" class="nav-link active">Quiz Tizimi</a>
+                <a href="/#portfolio" class="nav-link">Portfolio</a>
+                <a href="/#business" class="nav-link">Biznes</a>
+                <a href="/#shop" class="nav-link">Do'kon</a>
+            </div>
+            
+            <div class="nav-actions" id="nav-actions">
+                <button class="btn-secondary" onclick="showLogin()">Kirish</button>
+                <button class="btn-primary" onclick="showRegister()">Ro'yxatdan o'tish</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Quiz Management Section -->
+        <section class="quiz-management" id="quiz-management" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Quiz Boshqaruvi</h2>
+                    <p>PDF fayllardan quizlar yarating va boshqaring</p>
+                </div>
+
+                <!-- Upload Area -->
+                <div class="upload-section">
+                    <div class="upload-card">
+                        <div class="upload-area" id="upload-area">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3>PDF Fayl Yuklash</h3>
+                            <p>PDF faylni shu yerga sudrab tashlang yoki tanlash uchun bosing</p>
+                            <button class="btn-primary" onclick="selectPDFFile()">
+                                <i class="fas fa-file-pdf"></i>
+                                PDF Tanlash
+                            </button>
+                            <input type="file" id="pdf-input" accept=".pdf" style="display: none;">
+                        </div>
+                    </div>
+
+                    <!-- Quiz Settings -->
+                    <div class="quiz-settings">
+                        <h3>Quiz Sozlamalari</h3>
+                        <form id="quiz-settings-form">
+                            <div class="form-group">
+                                <label for="quiz-title">Quiz Nomi</label>
+                                <input type="text" id="quiz-title" placeholder="Quiz nomini kiriting">
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-description">Tavsif</label>
+                                <textarea id="quiz-description" rows="3" placeholder="Quiz haqida qisqacha ma'lumot"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- My Quizzes -->
+                <div class="my-quizzes">
+                    <h3>Mening Quizlarim</h3>
+                    <div class="quizzes-grid" id="quizzes-grid">
+                        <!-- Quizzes will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Taking Section -->
+        <section class="quiz-taking" id="quiz-taking" style="display: none;">
+            <div class="container">
+                <div class="quiz-header">
+                    <h2 id="quiz-title-display">Quiz</h2>
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <span id="progress-text">0 / 0</span>
+                    </div>
+                </div>
+
+                <div class="quiz-content">
+                    <div class="question-container" id="question-container">
+                        <!-- Questions will be displayed here -->
+                    </div>
+
+                    <div class="quiz-navigation">
+                        <button class="btn-secondary" id="prev-btn" onclick="previousQuestion()">
+                            <i class="fas fa-arrow-left"></i>
+                            Oldingi
+                        </button>
+                        <button class="btn-primary" id="next-btn" onclick="nextQuestion()">
+                            Keyingi
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn-success" id="submit-btn" onclick="submitQuiz()" style="display: none;">
+                            <i class="fas fa-check"></i>
+                            Yakunlash
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Results Section -->
+        <section class="quiz-results" id="quiz-results" style="display: none;">
+            <div class="container">
+                <div class="results-header">
+                    <h2>Quiz Natijalari</h2>
+                </div>
+
+                <div class="results-content">
+                    <div class="score-card">
+                        <div class="score-circle">
+                            <div class="score-number" id="score-percentage">0%</div>
+                            <div class="score-label">Ball</div>
+                        </div>
+                        <div class="score-details">
+                            <div class="score-item">
+                                <span class="label">To'g'ri javoblar:</span>
+                                <span class="value" id="correct-answers">0</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="label">Umumiy savollar:</span>
+                                <span class="value" id="total-questions">0</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="label">Mukofot:</span>
+                                <span class="value reward" id="reward-earned">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detailed-results">
+                        <h3>Batafsil natijalar</h3>
+                        <div class="results-list" id="detailed-results">
+                            <!-- Detailed results will be shown here -->
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="btn-primary" onclick="goBackToQuizList()">
+                            <i class="fas fa-list"></i>
+                            Quiz ro'yxatiga qaytish
+                        </button>
+                        <button class="btn-secondary" onclick="retakeQuiz()">
+                            <i class="fas fa-redo"></i>
+                            Qayta o'tish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guest Quiz List -->
+        <section class="quiz-list" id="quiz-list">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Mavjud Quizlar</h2>
+                    <p>Quizlarga qatnashib mukofotlar yutib oling!</p>
+                </div>
+
+                <div class="public-quizzes-grid" id="public-quizzes-grid">
+                    <!-- Public quizzes will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Reward Setup Modal -->
+        <div id="rewardModal" class="modal">
+            <div class="modal-content reward-modal">
+                <span class="close">&times;</span>
+                <h2>Mukofot Sozlash</h2>
+                <div class="reward-setup">
+                    <p>Har bir savol uchun mukofot miqdorini belgilang:</p>
+                    <div id="reward-questions">
+                        <!-- Questions with reward inputs will be added here -->
+                    </div>
+                    <div class="reward-total">
+                        <strong>Umumiy mukofot: $<span id="total-reward">0</span></strong>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-secondary" onclick="closeRewardModal()">Bekor qilish</button>
+                        <button class="btn-primary" onclick="saveRewards()">Saqlash</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Yuklanmoqda...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/main.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/payment.js"></script>
+</body>
+</html>

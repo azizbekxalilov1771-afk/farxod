@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Platform - Quiz, Portfolio, Biznes va Do'kon</title>
+    <meta name="description" content="Zamonaviy universal platform - Quiz tizimi, Portfolio, Biznes xizmatlari va Onlayn do'kon">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bolt"></i>
+                <span>Universal Platform</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Bosh sahifa</a>
+                <a href="#quiz" class="nav-link">Quiz Tizimi</a>
+                <a href="/portfolio.html" class="nav-link">Portfolio</a>
+                <a href="/business.html" class="nav-link">Biznes</a>
+                <a href="/shop.html" class="nav-link">Do'kon</a>
+                <a href="#contact" class="nav-link">Aloqa</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn-secondary" onclick="showLogin()">Kirish</button>
+                <button class="btn-primary" onclick="showRegister()">Ro'yxatdan o'tish</button>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Zamonaviy <span class="gradient-text">Universal Platform</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Quiz tizimi, Portfolio namoyishi, Biznes xizmatlari va Onlayn do'kon - hammasi bitta joyda!
+                </p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Aqlli Quiz Tizimi</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Professional Portfolio</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-store"></i>
+                        <span>E-commerce Do'kon</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn-primary btn-large" onclick="scrollToSection('quiz')">
+                        <i class="fas fa-play"></i>
+                        Boshlaymiz
+                    </button>
+                    <button class="btn-outline btn-large" onclick="scrollToSection('portfolio')">
+                        <i class="fas fa-eye"></i>
+                        Ko'rib chiqish
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Aqlli Quiz Tizimi</h2>
+                <p>PDF fayldan savollar yarating, testlar o'tkazing va mukofotlar bering</p>
+            </div>
+            
+            <div class="quiz-grid">
+                <div class="quiz-card">
+                    <div class="card-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>PDF Yuklash</h3>
+                    <p>PDF faylni yuklang va avtomatik ravishda savollar yaratilsin</p>
+                    <button class="btn-primary" onclick="uploadPDF()">PDF Yuklash</button>
+                </div>
+                
+                <div class="quiz-card">
+                    <div class="card-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Mukofot Sozlash</h3>
+                    <p>Har bir savol uchun mukofot miqdorini belgilang</p>
+                    <button class="btn-primary" onclick="setupRewards()">Sozlash</button>
+                </div>
+                
+                <div class="quiz-card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Test Berish</h3>
+                    <p>Testni odamlarga jo'nating va natijalarni kuzating</p>
+                    <button class="btn-primary" onclick="manageQuizzes()">Boshqarish</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mening Portfolio</h2>
+                <p>Professional loyihalar va ishlanmalar</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Barchasi</button>
+                <button class="filter-btn" data-filter="web">Web Saytlar</button>
+                <button class="filter-btn" data-filter="app">Ilovalar</button>
+                <button class="filter-btn" data-filter="design">Dizayn</button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolio-grid">
+                <!-- Portfolio items will be loaded dynamically -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300" alt="Loyiha">
+                        <div class="portfolio-overlay">
+                            <h3>Loyiha Nomi</h3>
+                            <p>Web Development</p>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-icon"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="btn-icon"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Section -->
+    <section id="business" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Biznes Xizmatlari</h2>
+                <p>Professional xizmatlari va yechimlar</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Dasturlash</h3>
+                    <p>Zamonaviy va responsive web saytlar yaratish</p>
+                    <div class="service-price">$500 dan</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Responsive dizayn</li>
+                        <li><i class="fas fa-check"></i> SEO optimizatsiya</li>
+                        <li><i class="fas fa-check"></i> Admin panel</li>
+                    </ul>
+                    <button class="btn-primary" onclick="payForService(1, 'Web Dasturlash', 500)">Buyurtma berish</button>
+                </div>
+                
+                <div class="service-card featured">
+                    <div class="service-badge">Mashhur</div>
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobil Ilovalar</h3>
+                    <p>iOS va Android uchun mobil ilovalar</p>
+                    <div class="service-price">$1000 dan</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Cross-platform</li>
+                        <li><i class="fas fa-check"></i> Native performance</li>
+                        <li><i class="fas fa-check"></i> Push notifications</li>
+                        <li><i class="fas fa-check"></i> Backend integration</li>
+                    </ul>
+                    <button class="btn-primary" onclick="payForService(2, 'Mobil Ilovalar', 1000)">Buyurtma berish</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>SEO, SMM va reklama kampaniyalari</p>
+                    <div class="service-price">$300 dan</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> SEO audit</li>
+                        <li><i class="fas fa-check"></i> Social media</li>
+                        <li><i class="fas fa-check"></i> Google Ads</li>
+                    </ul>
+                    <button class="btn-primary" onclick="payForService(3, 'Digital Marketing', 300)">Buyurtma berish</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Onlayn Do'kon</h2>
+                <p>Sifatli mahsulotlar va xizmatlar</p>
+            </div>
+            
+            <div class="shop-categories">
+                <button class="category-btn active" data-category="all">Barchasi</button>
+                <button class="category-btn" data-category="courses">Kurslar</button>
+                <button class="category-btn" data-category="templates">Shablonlar</button>
+                <button class="category-btn" data-category="tools">Vositalar</button>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded dynamically -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Mahsulot">
+                        <div class="product-badge">Yangi</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Web Development Kursi</h3>
+                        <p class="product-description">To'liq web dasturlash kursi</p>
+                        <div class="product-price">
+                            <span class="current-price">$99</span>
+                            <span class="old-price">$199</span>
+                        </div>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>(4.9)</span>
+                        </div>
+                        <button class="btn-primary btn-full" onclick="addToCart(1)">Savatga qo'shish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bog'lanish</h2>
+                <p>Savollaringiz bormi? Biz bilan bog'laning!</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@universalplatform.uz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+998 90 123 45 67</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Manzil</h4>
+                            <p>Toshkent, O'zbekiston</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Ismingiz" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email manzilingiz" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Mavzu" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Xabaringiz" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i>
+                        Xabar jo'natish
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-bolt"></i>
+                        <span>Universal Platform</span>
+                    </div>
+                    <p>Zamonaviy universal platform - Quiz, Portfolio, Biznes va E-commerce yechimi</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tezkor Havolalar</h4>
+                    <ul>
+                        <li><a href="#home">Bosh sahifa</a></li>
+                        <li><a href="#quiz">Quiz Tizimi</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#business">Biznes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Xizmatlar</h4>
+                    <ul>
+                        <li><a href="#">Web Dasturlash</a></li>
+                        <li><a href="#">Mobil Ilovalar</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Konsalting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Qo'llab-quvvatlash</h4>
+                    <ul>
+                        <li><a href="#">Yordam markazi</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#contact">Bog'lanish</a></li>
+                        <li><a href="#">Maxfiylik siyosati</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Universal Platform. Barcha huquqlar himoyalangan.</p>
+                <div class="footer-links">
+                    <a href="#">Foydalanish shartlari</a>
+                    <a href="#">Maxfiylik siyosati</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Kirish</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Parol" required>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Kirish</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ro'yxatdan o'tish</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Ism" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Parol" required>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Ro'yxatdan o'tish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/main.js"></script>
+    <script src="js/payment.js"></script>
+</body>
+</html>

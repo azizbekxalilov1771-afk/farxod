@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onlayn Do'kon - Universal Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bolt"></i>
+                <a href="/" style="color: inherit; text-decoration: none;">
+                    <span>Universal Platform</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Bosh sahifa</a>
+                <a href="/quiz.html" class="nav-link">Quiz Tizimi</a>
+                <a href="/portfolio.html" class="nav-link">Portfolio</a>
+                <a href="/business.html" class="nav-link">Biznes</a>
+                <a href="/shop.html" class="nav-link active">Do'kon</a>
+            </div>
+            
+            <div class="nav-actions" id="nav-actions">
+                <button class="btn-icon cart-btn" onclick="showCart()" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+                <button class="btn-secondary" onclick="showLogin()">Kirish</button>
+                <button class="btn-primary" onclick="showRegister()">Ro'yxatdan o'tish</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Shop Header -->
+        <section class="shop-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1>Onlayn Do'kon</h1>
+                    <p>Sifatli raqamiy mahsulotlar va xizmatlar</p>
+                </div>
+                
+                <!-- Search and Filter -->
+                <div class="shop-controls">
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Mahsulotlarni qidirish..." class="search-input">
+                        <button class="search-btn" onclick="searchProducts()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="filters-container">
+                        <select id="category-filter" class="filter-select" onchange="filterByCategory()">
+                            <option value="all">Barcha kategoriyalar</option>
+                        </select>
+                        
+                        <select id="sort-filter" class="filter-select" onchange="sortProducts()">
+                            <option value="created_at_desc">Yangi mahsulotlar</option>
+                            <option value="name_asc">Nom (A-Z)</option>
+                            <option value="name_desc">Nom (Z-A)</option>
+                            <option value="price_asc">Arzon narx</option>
+                            <option value="price_desc">Qimmat narx</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <h2>Kategoriyalar</h2>
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Categories will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="container">
+                <div class="products-header">
+                    <h2>Barcha Mahsulotlar</h2>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" onclick="toggleView('grid')">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list" onclick="toggleView('list')">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container" id="load-more-container" style="display: none;">
+                    <button class="btn-outline" onclick="loadMoreProducts()">
+                        <i class="fas fa-plus"></i>
+                        Ko'proq yuklash
+                    </button>
+                </div>
+                
+                <!-- No Results -->
+                <div class="no-results" id="no-results" style="display: none;">
+                    <div class="no-results-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Hech narsa topilmadi</h3>
+                    <p>Qidiruv mezonlaringizni o'zgartiring yoki barcha mahsulotlarni ko'ring</p>
+                    <button class="btn-primary" onclick="clearFilters()">
+                        Filtrlarni tozalash
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel (for authenticated admins) -->
+        <section class="admin-panel" id="admin-panel" style="display: none;">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Do'kon Boshqaruvi</h2>
+                    <div class="admin-actions">
+                        <button class="btn-primary" onclick="showAddProductModal()">
+                            <i class="fas fa-plus"></i> Mahsulot qo'shish
+                        </button>
+                        <button class="btn-secondary" onclick="showOrdersModal()">
+                            <i class="fas fa-list"></i> Buyurtmalar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-stats" id="admin-stats">
+                    <!-- Stats will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Savat</h3>
+            <button class="close-cart" onclick="hideCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-content">
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be displayed here -->
+            </div>
+            
+            <div class="cart-empty" id="cart-empty" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <p>Savat bo'sh</p>
+                <button class="btn-primary" onclick="hideCart()">Xarid qilishni davom eting</button>
+            </div>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Jami: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="btn-primary btn-full" onclick="checkout()" id="checkout-btn" disabled>
+                To'lov qilish
+            </button>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content product-modal">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <div class="product-detail" id="product-detail">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content add-product-modal">
+            <span class="close" onclick="closeAddProductModal()">&times;</span>
+            <h2 id="product-form-title">Mahsulot qo'shish</h2>
+            <form id="product-form" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="product-name">Mahsulot nomi</label>
+                        <input type="text" id="product-name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-category">Kategoriya</label>
+                        <select id="product-category" name="category" required>
+                            <option value="courses">Kurslar</option>
+                            <option value="templates">Shablonlar</option>
+                            <option value="tools">Vositalar</option>
+                            <option value="ebooks">E-kitoblar</option>
+                            <option value="plugins">Plaginlar</option>
+                            <option value="other">Boshqa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-price">Narx ($)</label>
+                        <input type="number" id="product-price" name="price" min="0" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-stock">Zaxira miqdori</label>
+                        <input type="number" id="product-stock" name="stock_quantity" min="0" value="0">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="product-description">Tavsif</label>
+                        <textarea id="product-description" name="description" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="product-image">Mahsulot rasmi</label>
+                        <input type="file" id="product-image" name="image" accept="image/*">
+                        <div class="image-preview" id="image-preview" style="display: none;">
+                            <img id="preview-img" src="" alt="Preview">
+                            <button type="button" class="remove-image" onclick="removeImage()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeAddProductModal()">
+                        Bekor qilish
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <span id="product-submit-text">Saqlash</span>
+                        <div class="spinner" id="product-form-spinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content checkout-modal">
+            <span class="close" onclick="closeCheckoutModal()">&times;</span>
+            <h2>To'lov</h2>
+            
+            <div class="checkout-steps">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Savat ko'rish</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Yetkazib berish</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">To'lov</span>
+                </div>
+            </div>
+            
+            <div class="checkout-content">
+                <!-- Step 1: Order Review -->
+                <div class="checkout-step" id="checkout-step-1">
+                    <h3>Buyurtmangizni ko'rib chiqing</h3>
+                    <div class="order-summary" id="order-summary">
+                        <!-- Order items will be displayed here -->
+                    </div>
+                </div>
+                
+                <!-- Step 2: Shipping -->
+                <div class="checkout-step" id="checkout-step-2" style="display: none;">
+                    <h3>Yetkazib berish ma'lumotlari</h3>
+                    <form id="shipping-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="shipping-name">To'liq ism</label>
+                                <input type="text" id="shipping-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping-phone">Telefon</label>
+                                <input type="tel" id="shipping-phone" name="phone" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="shipping-address">Manzil</label>
+                                <textarea id="shipping-address" name="address" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Step 3: Payment -->
+                <div class="checkout-step" id="checkout-step-3" style="display: none;">
+                    <h3>To'lov usuli</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method active" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Karta orqali</span>
+                        </div>
+                    </div>
+                    <div class="order-total">
+                        <div class="total-line">
+                            <span>Jami:</span>
+                            <span>$<span id="checkout-total">0.00</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkout-actions">
+                <button class="btn-secondary" onclick="prevCheckoutStep()" id="prev-step-btn" style="display: none;">
+                    Orqaga
+                </button>
+                <button class="btn-primary" onclick="nextCheckoutStep()" id="next-step-btn">
+                    Davom etish
+                </button>
+                <button class="btn-success" onclick="completeOrder()" id="complete-order-btn" style="display: none;">
+                    Buyurtmani yakunlash
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <p>Yuklanmoqda...</p>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay" onclick="hideCart()"></div>
+
+    <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/main.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/shop.js"></script>
+</body>
+</html>

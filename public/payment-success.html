@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To'lov Muvaffaqiyatli - Universal Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+        
+        .success-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            animation: successPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .success-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .success-message {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .countdown {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1 class="success-title">To'lov Muvaffaqiyatli!</h1>
+            
+            <p class="success-message">
+                Sizning to'lovingiz muvaffaqiyatli amalga oshirildi. 
+                Tez orada sizga email orqali tasdiq xabari yuboriladi.
+            </p>
+            
+            <div class="success-actions">
+                <a href="/" class="btn-primary">
+                    <i class="fas fa-home"></i>
+                    Bosh sahifa
+                </a>
+                <a href="/quiz.html" class="btn-secondary">
+                    <i class="fas fa-brain"></i>
+                    Quiz tizimi
+                </a>
+            </div>
+            
+            <div class="countdown" id="countdown">
+                <span id="countdown-text">5 soniyadan keyin bosh sahifaga yo'naltirilasiz</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown and redirect
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown-text');
+        
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            if (countdown > 0) {
+                countdownElement.textContent = `${countdown} soniyadan keyin bosh sahifaga yo'naltirilasiz`;
+            } else {
+                clearInterval(countdownInterval);
+                window.location.href = '/';
+            }
+        }, 1000);
+        
+        // Check payment status from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentIntentId = urlParams.get('payment_intent');
+        const status = urlParams.get('redirect_status');
+        
+        if (status === 'succeeded' && paymentIntentId) {
+            // Payment was successful
+            console.log('Payment succeeded:', paymentIntentId);
+            
+            // You can make an API call to confirm the payment on your server
+            confirmPaymentOnServer(paymentIntentId);
+        }
+        
+        async function confirmPaymentOnServer(paymentIntentId) {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) return;
+                
+                const response = await fetch('/api/payment/confirm-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        paymentIntentId: paymentIntentId
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Payment confirmation result:', result);
+            } catch (error) {
+                console.error('Payment confirmation error:', error);
+            }
+        }
+    </script>
+</body>
+</html>
